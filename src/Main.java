@@ -19,31 +19,11 @@ public class Main {
         return root;
     }
 
-    // Insert method
-    public void insert(String username, String email, String password) {
-        String encryptedUsername = EncryptionUtil.encrypt(username, SECRET_KEY);
-        TrieNode current = root;
-        for (char ch : encryptedUsername.toCharArray()) {
-            current.children.putIfAbsent(ch, new TrieNode());
-            current = current.children.get(ch);
-        }
-        current.isEndOfWord = true;
-        current.encryptedPassword = EncryptionUtil.encrypt(password, SECRET_KEY);
-        current.email = EncryptionUtil.encrypt(email, SECRET_KEY);
-    }
+ // Insert method
+ public insert Root(){
+    return root;
+ }
 
-    // Search method
-    public boolean search(String username) {
-        String encryptedUsername = EncryptionUtil.encrypt(username, SECRET_KEY);
-        TrieNode current = root;
-        for (char ch : encryptedUsername.toCharArray()) {
-            if (!current.children.containsKey(ch)) {
-                return false;
-            }
-            current = current.children.get(ch);
-        }
-        return current.isEndOfWord;
-    }
 
     // Delete method
     public boolean delete(String username) {
